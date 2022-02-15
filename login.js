@@ -18,7 +18,7 @@ router.route("/login").post(async (request, response) => {
     const storedPassword = userData.password;
     const comparison = await bcrypt.compare(password, storedPassword);
     if (comparison) {
-    const message = (`<p>SUCESSFULLY LOGGED IN</p>`);
+    const message = (`<p>Welcome you have successfully logged in😊</p>`);
     emailsender(emailId, message,response);
     // return  response.send({ message: "Login successfull" });
 

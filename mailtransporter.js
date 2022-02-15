@@ -16,7 +16,7 @@ export function emailsender(emailId, message,response) {
   const mailContent = {
     from: process.env.mailid,
     to: emailId,
-    subject: "Forget Password",
+    subject: "Mail from basic login setup",
     html: message,
   }
   transporter.sendMail(mailContent, (err, info) => {

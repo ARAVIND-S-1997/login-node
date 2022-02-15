@@ -24,7 +24,7 @@ router.route("/signup").post(async (request, response) => {
         const finalPassword = await genPassword(password)
         const createUserDetails = await client.db("login").collection("usersDetails").insertOne({ userName, emailId, dob, password: finalPassword });
         response.send(createUserDetails);
-        const message = (`<p>SUCESSFULLY SIGNED IN</p>`);
+        const message = (`<p>Congrats you have successfully signed in😊</p>`);
         emailsender(emailId, message);
     }
 });
