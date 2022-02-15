@@ -22,10 +22,8 @@ console.log(emailId)
         console.log(genToken)
         const updatePasswordWithToken = await client.db("login").collection("usersDetails").updateOne({ emailId }, { $set: { password: genToken } });
         response.send(updatePasswordWithToken);
-        const resetPasswordLink = `https://basic-login-apps.herokuapp.com/user/forgetpassword/verify/${genToken}`;
-
+        const resetPasswordLink = `https://basic-login-setup.herokuapp.com/user/forgetpassword/verify/${genToken}`;
         // const resetPasswordLink = `http://localhost:9000/user/forgetpassword/verify/${genToken}`;
-
         const message = (
             `<p>link to reset the password</p>
         <a href=${resetPasswordLink}> Click here to reset your password </a>`
@@ -34,6 +32,8 @@ console.log(emailId)
     
     }
 });
+
+//verification for replaced token exist or not 
 
 
 router.route("/forgetpassword/verify/:token").get(async (request, response) => {
