@@ -35,7 +35,6 @@ console.log(emailId)
 
 //verification for replaced token exist or not 
 
-
 router.route("/forgetpassword/verify/:token").get(async (request, response) => {
     const { token: genToken } = request.params;
     const verification = await client.db("login").collection("usersDetails").findOne({ password: { $eq: genToken } })
