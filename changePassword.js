@@ -7,16 +7,16 @@ const router = express.Router();
 
 export const changepasswordRouter = router;
 
-router.route("/changepassword").post(async (request, response) => {
+router.route("/changepassword/:token").post(async (request, response) => {
     const { password, token } = request.body;
     const verification = await client.db("login").collection("usersDetails").findOne({ password: { $eq: token } })
     const { emailId } = await verification;
     if (verification) {
         const finalPassword = await genPassword(password)
         const updatePassword = await client.db("login").collection("usersDetails").updateOne({ emailId }, { $set: { password: finalPassword } })
-        response.redirect(`https://epic-mcclintock-d7afca.netlify.app`)
+        response.redirect(`https://epic-mcclintock-d7afca.netlify.app/`)
         const message = (`<p>Password changed sucessFully😊</p>`);
-    emailsender(emailId, message,response);
+        emailsender(emailId, message, response);
     }
     else {
         response.send({ message: "link expired" })
