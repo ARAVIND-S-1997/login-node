@@ -17,9 +17,11 @@ router.route("/changepassword").post(async (request, response) => {
     if (verification) {
         const finalPassword = await genPassword(password)
         const updatePassword = await client.db("login").collection("usersDetails").updateOne({ emailId }, { $set: { password: finalPassword } })
+    if(updatePassword){
         response.redirect(`https://epic-mcclintock-d7afca.netlify.app/`)
         const message = (`<p>Password changed sucessFully😊</p>`);
         emailsender(emailId, message, response);
+    }
     }
     else {
         response.send({ message: "link expired" })
